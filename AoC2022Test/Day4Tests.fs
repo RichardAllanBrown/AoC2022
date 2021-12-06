@@ -13,3 +13,7 @@ let ``Parses file sensibly`` () =
 [<Fact>]
 let ``Computes correct result for Day 4 Part 1`` () =
     Assert.Equal(74320, computeDay4Part1())
+
+[<Fact>]
+let ``Computes correct result for Day 4 Part 2`` () =
+    Assert.Equal(17884, computeDay4Part2())

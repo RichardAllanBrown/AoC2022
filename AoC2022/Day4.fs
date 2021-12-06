@@ -25,17 +25,24 @@ type BingoBoard =
     member this.rowHasMatch(x: int): bool = [0..4] |> List.forall(fun y -> this.matches[this.getIndex(x, y)])
 
     member this.hasWon(): bool = [0..4] |> List.exists(fun z -> this.columnHasMatch(z) || this.rowHasMatch(z))
+
+    member this.hasNotWon(): bool = not(this.hasWon())
         
     member this.sumUnmatchedNumbers(): int = 
         List.zip(this.board)(this.matches)
         |> List.filter(fun (_, m) -> not m)
         |> List.sumBy fst
 
-let rec getWinningBoard(boards: BingoBoard list)(numbers: int list): BingoBoard*int =
+let rec getWinningBoard(boards: BingoBoard list)(numbers: int list): BingoBoard * int =
     let newBoards = boards |> List.map(fun b -> b.handleCall(numbers.Head))
     let wonBoards = newBoards |> List.filter(fun b -> b.hasWon())
     if wonBoards.IsEmpty then getWinningBoard(newBoards)(numbers.Tail)
     else (wonBoards.Head, numbers.Head)
+
+let rec getLastWinningBoard(boards: BingoBoard list)(numbers: int list): BingoBoard * int =
+    let newBoards = boards |> List.map(fun b -> b.handleCall(numbers.Head))
+    if (newBoards.Length = 1 && newBoards.Head.hasWon()) then (newBoards.Head, numbers.Head)
+    else getLastWinningBoard(newBoards |> List.filter(fun b -> b.hasNotWon()))(numbers.Tail)
 
 let splitToNumberList(str: string): int list = 
     str.Split([|','|], System.StringSplitOptions.TrimEntries) 
@@ -60,4 +67,9 @@ let parseFile(lines: string list): BingoBoard list * int list =
 let computeDay4Part1(): int =
     let (boards, numbers) = Utils.readInputFile("./Input/Day4.txt") |> parseFile
     let (winningBoard, lastCalledNumber) = getWinningBoard(boards)(numbers)
+    winningBoard.sumUnmatchedNumbers() * lastCalledNumber
+
+let computeDay4Part2(): int =
+    let (boards, numbers) = Utils.readInputFile("./Input/Day4.txt") |> parseFile
+    let (winningBoard, lastCalledNumber) = getLastWinningBoard(boards)(numbers)
     winningBoard.sumUnmatchedNumbers() * lastCalledNumber
