@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoC2022", "AoC2022\AoC2022.fsproj", "{B3347541-6935-47D0-AEDD-9FC2651DF8AF}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AoC2022", "AoC2022\AoC2022.fsproj", "{B3347541-6935-47D0-AEDD-9FC2651DF8AF}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AoC2022Test", "AoC2022Test\AoC2022Test.fsproj", "{8C21E243-6272-45C4-A7EE-2297E1943CE4}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AoC2022Test", "AoC2022Test\AoC2022Test.fsproj", "{8C21E243-6272-45C4-A7EE-2297E1943CE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
