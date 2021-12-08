@@ -1,6 +1,5 @@
 ﻿module Day4Tests
 
-open System
 open Xunit
 open Day4
 

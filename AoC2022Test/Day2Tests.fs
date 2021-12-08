@@ -1,6 +1,5 @@
 ﻿module Day2Tests
 
-open System
 open Xunit
 open Day2
 
