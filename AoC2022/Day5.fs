@@ -1,7 +1,6 @@
 ﻿module Day5
 
-type Point = 
-    { x: int; y: int }
+open Point
 
 let getRange a b =
     if (a<b) then [a..b]

@@ -2,6 +2,7 @@
 
 open Xunit
 open Day5
+open Point
 
 [<Fact>]
 let ``Computes lines points correctly`` () =
