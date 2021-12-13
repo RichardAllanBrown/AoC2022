@@ -7,7 +7,7 @@ type Grid = int[,]
 
 let isLowPoint(h: Grid)(location: Point): bool =
     let locationValue = Grid.get(h)(location)
-    Grid.getNeighbouringPoints(h)(location)
+    Grid.getCardinalNeighbouringPoints(h)(location)
     |> List.forall(fun p -> locationValue < Grid.get(h)(p))
 
 let computeRiskLevel(h: Grid): int =
@@ -16,13 +16,9 @@ let computeRiskLevel(h: Grid): int =
     |> List.map(Grid.get(h))
     |> List.sumBy(fun x -> x + 1)
 
-let parseFile(lines: string list): Grid =
-    let digitLineToArr(str: string) = str.ToCharArray() |> Array.map(string) |> Array.map(int)
-    lines |> List.map(digitLineToArr) |> array2D
-
 let computeDay9Part1(): int =
     Utils.readInputFile("./Input/Day9.txt")
-    |> parseFile
+    |> Grid.parseFile
     |> computeRiskLevel
 
 let findBasinSize(h: Grid)(p: Point): int =
@@ -30,7 +26,7 @@ let findBasinSize(h: Grid)(p: Point): int =
         let result = 
             currentBasin 
             |> Set.toList 
-            |> List.collect(Grid.getNeighbouringPoints(h))
+            |> List.collect(Grid.getCardinalNeighbouringPoints(h))
             |> List.append(currentBasin |> Set.toList)
             |> List.filter(fun n -> Grid.get(h)(n) < 9)
             |> Set
@@ -52,6 +48,6 @@ let multLargest3Basins(h: Grid): int =
 
 let computeDay9Part2(): int =
     Utils.readInputFile("./Input/Day9.txt")
-    |> parseFile
+    |> Grid.parseFile
     |> multLargest3Basins
 

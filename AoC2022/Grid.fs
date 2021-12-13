@@ -18,7 +18,27 @@ module Grid =
         let yMax = Array2D.length2(h) - 1 
         0 <= p.x && p.x <= xMax && 0 <= p.y && p.y <= yMax
 
-    let getNeighbouringPoints(h: Grid)(p: Point): Point list = 
+    let getCardinalNeighbouringPoints(h: Grid)(p: Point): Point list = 
         p 
         |> Point.getCardinalNeighbours 
         |> List.filter(containsPoint(h))
+
+    let getSurroundingPoints(h: Grid)(p: Point): Point list = 
+        p 
+        |> Point.getAllNeighbours 
+        |> List.filter(containsPoint(h))
+
+    let map(f: int -> int)(h: Grid): Grid = Array2D.map(f)(h)
+
+    let mapi(f: Point -> int -> int)(g: Grid): Grid = 
+        Array2D.mapi(fun x -> fun y -> fun v -> f({x=x;y=y})(v))(g)
+
+    let findPoints(f: int -> bool)(g: Grid): Point list =
+        getAllPoints(g)
+        |> List.map(fun p -> (p, get(g)(p)))
+        |> List.filter(fun (_, v) -> f(v))
+        |> List.map(fst)
+
+    let parseFile(lines: string list): Grid =
+        let digitLineToArr(str: string) = str.ToCharArray() |> Array.map(string) |> Array.map(int)
+        lines |> List.map(digitLineToArr) |> array2D
