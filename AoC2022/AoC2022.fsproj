@@ -41,6 +41,9 @@
     <Content Include="Input\Day11.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Input\Day13.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Utils.fs" />
     <Compile Include="Day1.fs" />
     <Compile Include="Day2.fs" />
@@ -53,6 +56,7 @@
     <Compile Include="Day9.fs" />
     <Compile Include="Day10.fs" />
     <Compile Include="Day11.fs" />
+    <Compile Include="Day13.fs" />
   </ItemGroup>
 
 </Project>
