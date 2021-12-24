@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="Point.fs" />
     <Compile Include="Grid.fs" />
+    <Compile Include="InputParsers.fs" />
     <Content Include="Input\Day1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -44,6 +45,9 @@
     <Content Include="Input\Day13.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Input\Day14.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Utils.fs" />
     <Compile Include="Day1.fs" />
     <Compile Include="Day2.fs" />
@@ -57,6 +61,9 @@
     <Compile Include="Day10.fs" />
     <Compile Include="Day11.fs" />
     <Compile Include="Day13.fs" />
+    <Compile Include="Day14.fs" />
+    <Compile Include="Day15.fs" />
+    <Compile Include="Day16.fs" />
   </ItemGroup>
 
 </Project>

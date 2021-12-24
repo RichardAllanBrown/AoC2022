@@ -1,8 +1,7 @@
 ﻿module Day13
 
 open Point
-open Grid
-open System.Text.RegularExpressions
+open InputParsers
 
 type Paper = Point list
 
@@ -42,17 +41,6 @@ let foldPaper(paper: Paper)(fold: Fold): Paper =
         | Horizontal(y) -> List.partition(fun p -> p.y < y)(paper)
         | Vertical(x) -> List.partition(fun p -> p.x < x)(paper)    
     toTransform |> List.map(applyFold(fold)) |> List.append(stable) |> List.distinct
-
-let (|Integer|_|) (str: string) =
-   let mutable intvalue = 0
-   if System.Int32.TryParse(str, &intvalue) then Some(intvalue)
-   else None
-
-let (|ParseRegex|_|) regex str =
-   let m = Regex(regex).Match(str)
-   if m.Success
-   then Some (List.tail [ for x in m.Groups -> x.Value ])
-   else None
 
 let parse(input: string list): Paper * Fold list =
     let unparsedMoves, unparsedPoints = input |> List.partition(fun s -> s.StartsWith("fold along"))
